@@ -3,9 +3,28 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "demo"
+name = "demo-project"
+description = "Demo project description."
 version = "0.0.1"
-dependencies = ["textual"]
+authors = [{name = "Your Name"}]
+readme = "README.md"
+license = "GPL-3.0-or-later"
+keywords = ["template", "demo"]
+dependencies = [
+  "textual",
+  "pyvisa",
+  "pyvisa-py[serial,usb,psutil,hislip-discovery]"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3"
+]
 
-[project.scripts]
-demo-app = "__main__:main"
+[project.urls]
+Repository = "https://github.com/alexis-giraudet/python-project-template.git"
+
+[project.gui-scripts]
+demo-pyvisa = "demo_pyvisa:main"
+demo-textual = "demo_textual:main"
