@@ -3,13 +3,13 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "demo-project"
+name = "python-project-template"
 description = "Demo project description."
 version = "0.0.1"
 authors = [{name = "Your Name"}]
 readme = "README.md"
 license = "GPL-3.0-or-later"
-keywords = ["template", "demo"]
+keywords = ["template", "demo", "project"]
 dependencies = [
   "textual",
   "pyvisa",
@@ -28,3 +28,7 @@ Repository = "https://github.com/alexis-giraudet/python-project-template.git"
 [project.gui-scripts]
 demo-pyvisa = "demo_pyvisa:main"
 demo-textual = "demo_textual:main"
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+pythonpath = "src"
