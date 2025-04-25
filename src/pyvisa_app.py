@@ -180,7 +180,7 @@ class PyVisaApp(App):
                 self.pyvisa_resource_manager.open_resource, resource_name
             )
             Panel(
-                str(resource_name),
+                str(self.pyvisa_resource),
                 **panel_kwargs,
                 border_style="green",
             )
