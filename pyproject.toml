@@ -26,7 +26,7 @@ classifiers = [
 Repository = "https://github.com/alexis-giraudet/python-project-template.git"
 
 [project.gui-scripts]
-demo-pyvisa = "demo_pyvisa:main"
+pyvisa-app = "pyvisa_app:main"
 demo-textual = "demo_textual:main"
 
 [tool.pytest.ini_options]
