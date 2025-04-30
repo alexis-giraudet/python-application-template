@@ -179,10 +179,12 @@ class PyVisaApp(App):
             self.pyvisa_resource = await asyncio.to_thread(
                 self.pyvisa_resource_manager.open_resource, resource_name
             )
-            Panel(
-                str(self.pyvisa_resource),
-                **panel_kwargs,
-                border_style="green",
+            self.pyvisa_log.write(
+                Panel(
+                    str(self.pyvisa_resource),
+                    **panel_kwargs,
+                    border_style="green",
+                )
             )
         except Exception as e:
             self.pyvisa_log.write(
@@ -208,10 +210,12 @@ class PyVisaApp(App):
         }
         try:
             await asyncio.to_thread(self.pyvisa_resource.close)
-            Panel(
-                "",
-                **panel_kwargs,
-                border_style="green",
+            self.pyvisa_log.write(
+                Panel(
+                    "",
+                    **panel_kwargs,
+                    border_style="green",
+                )
             )
         except Exception as e:
             self.pyvisa_log.write(
@@ -227,7 +231,7 @@ class PyVisaApp(App):
     def action_query_send(self) -> None:
         self.update_resource_widgets(True)
         self.query_send_button.loading = True
-        self.work_resource_close()
+        self.work_query_send()
 
     @work
     async def work_query_send(self) -> None:
@@ -237,10 +241,12 @@ class PyVisaApp(App):
             "title_align": "left",
         }
         try:
-            Panel(
-                await asyncio.to_thread(self.pyvisa_resource.query, query_message),
-                **panel_kwargs,
-                border_style="green",
+            self.pyvisa_log.write(
+                Panel(
+                    await asyncio.to_thread(self.pyvisa_resource.query, query_message),
+                    **panel_kwargs,
+                    border_style="green",
+                )
             )
         except Exception as e:
             self.pyvisa_log.write(
