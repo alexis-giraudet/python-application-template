@@ -1,3 +1,6 @@
+# See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+# See https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
@@ -6,29 +9,36 @@ build-backend = "setuptools.build_meta"
 name = "python-project-template"
 description = "Demo project description."
 version = "0.0.1"
-authors = [{name = "Your Name"}]
+authors = [{ name = "Your Name" }]
 readme = "README.md"
 license = "GPL-3.0-or-later"
 keywords = ["template", "demo", "project"]
-dependencies = [
-  "textual",
-  "pyvisa",
-  "pyvisa-py[serial,usb,psutil,hislip-discovery]"
-]
+dependencies = ["textual", "pyvisa", "pyvisa-py"]
+requires-python = ">=3.10"
+# See https://pypi.org/classifiers/
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: Developers",
-  "Programming Language :: Python :: 3"
+  "Programming Language :: Python :: 3",
 ]
+
+[tool.setuptools.package-data]
+pyvisapp = ["*.tcss"]
+
+[project.optional-dependencies]
+pyvisa-py-opt = ["pyvisa-py[serial,usb,psutil,hislip-discovery]"]
 
 [project.urls]
 Repository = "https://github.com/alexis-giraudet/python-project-template.git"
 
-[project.gui-scripts]
-pyvisa-app = "pyvisa_app:main"
+[project.scripts]
+hello-world = "hello_world:main"
+pyvisa-app = "pyvisapp.app:main"
 demo-textual = "demo_textual:main"
 
+# See https://docs.pytest.org/en/stable/explanation/goodpractices.html
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]
 pythonpath = "src"
+testpaths = ["tests"]

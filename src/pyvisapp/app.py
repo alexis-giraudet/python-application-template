@@ -1,4 +1,5 @@
 import asyncio
+from importlib import resources
 import pyvisa
 from rich.panel import Panel
 from rich.table import Table
@@ -17,28 +18,7 @@ from textual.widgets import (
 
 class PyVisaApp(App):
 
-    CSS = """
-    Screen {
-        layout: grid;
-        grid-size: 5 3;
-        grid-columns: auto 1fr auto auto auto;
-        grid-rows: auto 1fr auto;
-    }
-
-    Label {
-        width: 100%;
-        padding: 1;
-        text-align: center;
-    }
-
-    #pyvisa_log {
-        column-span: 5;
-    }
-
-    #query_message_input {
-        column-span: 3;
-    }
-    """
+    CSS = resources.read_text(__package__, "style.tcss")
 
     pyvisa_resource_manager = pyvisa.ResourceManager("@py")
     pyvisa_resource = None
