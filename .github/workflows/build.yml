@@ -1,0 +1,33 @@
+name: Build Python Package
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+#      - uses: actions/setup-python@v5
+#        with:
+#          python-version: "3.x"
+      - name: Build release distributions
+        run: |
+          python3 -m pip install --upgrade pip build whl2pyz
+          python3 -m build --outdir "${{ runner.temp }}/dist"
+          whl2pyz --outdir "${{ runner.temp }}/bin" --python "/usr/bin/env python3" --compress --wheels "${{ runner.temp }}/dist/"*.whl
+          whl2pyz --outdir "${{ runner.temp }}/bin_Linux" --python "/usr/bin/env python3" --compress --wheels "${{ runner.temp }}/dist/"*.whl -- "$(echo "${{ runner.temp }}/dist/"*.whl)[pyvisa-py-opt]"
+          mv "${{ runner.temp }}/bin_Linux/pyvisa-app.pyz" "${{ runner.temp }}/bin/pyvisa-app_Linux.pyz"
+          whl2pyz --outdir "${{ runner.temp }}/bin_Windows" --compress --wheels "${{ runner.temp }}/dist/"*.whl -- "$(echo "${{ runner.temp }}/dist/"*.whl)[pyvisa-py-opt]" --platform=win32 --only-binary=:all:
+          mv "${{ runner.temp }}/bin_Windows/pyvisa-app.pyz" "${{ runner.temp }}/bin/pyvisa-app_Windows.pyz"
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ${{ runner.temp }}/dist/
+      - name: Upload bin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bin
+          path: ${{ runner.temp }}/bin/
