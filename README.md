@@ -39,8 +39,8 @@ python3 -m pip install --upgrade pip build whl2pyz pytest
 
 ## Develop
 
-[Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
-[Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
+ - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
+ - [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
 
 Install the application and make it editable (you don't have to reinstall it each time you edit the code):
 ```sh
@@ -63,7 +63,7 @@ python3 -m build
 
 Build portable zip app (output to ./bin folder):
 ```sh
-whl2pyz --python "/usr/bin/env python3" --compress dist/*.whl
+whl2pyz --python "/usr/bin/env python3" --compress --wheels dist/*.whl
 ```
 
 ## Publish
@@ -79,3 +79,4 @@ whl2pyz --python "/usr/bin/env python3" --compress dist/*.whl
  - [pytest](https://docs.pytest.org/en/stable/#)
  - [PEP Index](https://peps.python.org/#)
  - [Black](https://black.readthedocs.io/en/stable/)
+ - [zipapp - Manage executable Python zip archives](https://docs.python.org/fr/3/library/zipapp.html)
