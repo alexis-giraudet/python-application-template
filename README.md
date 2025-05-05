@@ -39,8 +39,8 @@ python3 -m pip install --upgrade pip build whl2pyz pytest
 
 ## Develop
 
-[Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
-[Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
+ - [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
+ - [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python)
 
 Install the application and make it editable (you don't have to reinstall it each time you edit the code):
 ```sh
