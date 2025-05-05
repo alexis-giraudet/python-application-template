@@ -6,7 +6,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python-project-template"
+name = "python-application-template"
 description = "Demo project description."
 version = "0.0.1"
 authors = [{ name = "Your Name" }]
@@ -30,7 +30,7 @@ pyvisapp = ["*.tcss"]
 pyvisa-py-opt = ["pyvisa-py[serial,usb,psutil,hislip-discovery]"]
 
 [project.urls]
-Repository = "https://github.com/alexis-giraudet/python-project-template.git"
+Repository = "https://github.com/alexis-giraudet/python-application-template.git"
 
 [project.scripts]
 hello-world = "hello_world:main"
