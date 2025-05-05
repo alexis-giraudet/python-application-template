@@ -79,3 +79,4 @@ whl2pyz --python "/usr/bin/env python3" --compress dist/*.whl
  - [pytest](https://docs.pytest.org/en/stable/#)
  - [PEP Index](https://peps.python.org/#)
  - [Black](https://black.readthedocs.io/en/stable/)
+ - [zipapp - Manage executable Python zip archives](https://docs.python.org/fr/3/library/zipapp.html)
