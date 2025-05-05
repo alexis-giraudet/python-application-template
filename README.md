@@ -63,7 +63,7 @@ python3 -m build
 
 Build portable zip app (output to ./bin folder):
 ```sh
-whl2pyz --python "/usr/bin/env python3" --compress dist/*.whl
+whl2pyz --python "/usr/bin/env python3" --compress --wheels dist/*.whl
 ```
 
 ## Publish
