@@ -1,6 +1,7 @@
 import asyncio
 from importlib import resources
 import pyvisa
+import pyvisa.util
 from rich.panel import Panel
 from rich.table import Table
 from textual import work
@@ -19,6 +20,7 @@ from textual.widgets import (
 class PyVisaApp(App):
 
     CSS = resources.read_text(__package__, "style.tcss")
+    TITLE = "PyVISA App"
 
     pyvisa_resource_manager = pyvisa.ResourceManager("@py")
     pyvisa_resource = None
@@ -59,7 +61,29 @@ class PyVisaApp(App):
         yield Footer()
 
     def on_mount(self) -> None:
-        self.title = "PyVISA App"
+        self.work_pyvisa_debug_info()
+
+    @work
+    async def work_pyvisa_debug_info(self) -> None:
+        panel_kwargs = {
+            "title": "PyVISA Debug Info",
+            "title_align": "left",
+        }
+        try:
+            self.pyvisa_log.write(
+                Panel(
+                    await asyncio.to_thread(pyvisa.util.get_debug_info, False),
+                    **panel_kwargs,
+                )
+            )
+        except Exception as e:
+            self.pyvisa_log.write(
+                Panel(
+                    str(e),
+                    **panel_kwargs,
+                    border_style="red",
+                )
+            )
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         button_id = event.button.id
